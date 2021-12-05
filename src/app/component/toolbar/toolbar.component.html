@@ -1,4 +1,7 @@
 <mat-toolbar color="primary" role="banner">
     <span>{{ title }}</span>
     <div class="spacer"></div>
+    <a mat-button [routerLink]="['form/edit']">edit</a>
+    <a mat-button [routerLink]="['form/submit']">submit</a>
+    <a mat-button [routerLink]="['form/list']">list</a>
 </mat-toolbar>

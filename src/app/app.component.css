@@ -20,10 +20,6 @@ p {
   margin: 0;
 }
 
-.spacer {
-  flex: 1;
-}
-
 .content {
   display: flex;
   margin: 82px auto 32px;

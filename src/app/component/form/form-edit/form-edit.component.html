@@ -1,14 +1,14 @@
 <h1>From edit</h1>
-<div class="column">
+<form (submit)="onSubmit()" class="column">
 	<mat-form-field appearance="fill">
 			<mat-label>Form name</mat-label>
-			<input matInput>
+			<input matInput required>
 	</mat-form-field>
 	
 	<div *ngFor="let field of fields" class="row">
 		<mat-form-field appearance="fill">
 				<mat-label>Attribute name</mat-label>
-				<input matInput [value]="field.name" #attName (keyup)="field.name=attName.value">
+				<input matInput required [value]="field.name" #attName (keyup)="field.name=attName.value">
 		</mat-form-field>
 		
 		<mat-form-field appearance="fill">
@@ -20,8 +20,10 @@
 				<mat-option value="button">Button</mat-option>
 			</mat-select>
 		</mat-form-field>
+		
+		<button mat-raised-button color="warn">delete</button>
 	</div>
   <button mat-raised-button color="accent" (click)="onAddField()">Add attribute</button>
 
-</div>
-<button mat-raised-button color="primary" (click)="onSubmit()">Create</button>
+	<button mat-raised-button color="primary" type="submit">Create</button>
+</form>
