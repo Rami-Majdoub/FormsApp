@@ -1,30 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormService } from 'src/app/service/form/form.service';
 
 @Component({
   selector: 'app-form-list',
   templateUrl: './form-list.component.html',
   styleUrls: ['./form-list.component.css']
 })
-export class FormListComponent implements OnInit {
+export class FormListComponent implements OnInit, OnDestroy  {
 
-  constructor() { }
+  constructor(
+    private formService: FormService,
+  ) { }
+  
+  data: any;
+  columnsToDisplay: string[] = [];
+  displayedColumns: string[] = [];
 
-  data = [
-    {
-      "hhh": "eee",
-      "hello": "o",
-      "world": "k",
-    },
-    {
-      "hhh": "eee",
-      "hello": "o",
-      "world": "k",
-    }
-  ]
-  columnsToDisplay = ["hello", "world"];
-  displayedColumns = ["hello", "world"];
+  private ssGetFormSubmissions: any;
 
   ngOnInit(): void {
+    
+  }
+
+  ngOnDestroy(): void {
+    if(this.ssGetFormSubmissions) this.ssGetFormSubmissions = null;
   }
 
 }
