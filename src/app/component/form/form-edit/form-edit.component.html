@@ -1,19 +1,19 @@
 <h1>From edit</h1>
-<form (submit)="onSubmit()" class="column">
+<form (submit)="onSubmit(form)" #form="ngForm" class="column">
 	<mat-form-field appearance="fill">
 			<mat-label>Form name</mat-label>
 			<input matInput required>
 	</mat-form-field>
 	
-	<div *ngFor="let field of fields" class="row">
+	<div *ngFor="let field of myForm.fields" class="row">
 		<mat-form-field appearance="fill">
 				<mat-label>Attribute name</mat-label>
-				<input matInput required [value]="field.name" #attName (keyup)="field.name=attName.value">
+				<input matInput required [value]="field.field_name" #attName (keyup)="field.field_name=attName.value">
 		</mat-form-field>
 		
 		<mat-form-field appearance="fill">
 			<mat-label>Select</mat-label>
-			<mat-select [value]="field.type" (selectionChange)="field.type=$event.value">
+			<mat-select [value]="field.field_type" (selectionChange)="field.field_type=$event.value">
 				<mat-option value="text">Text</mat-option>
 				<mat-option value="number">Number</mat-option>
 				<mat-option value="date">Date</mat-option>

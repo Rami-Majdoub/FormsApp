@@ -1,9 +1,33 @@
-<table mat-table [dataSource]="data" class="mat-elevation-z8">
-  <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
-    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+<div>
+  <a mat-raised-button [routerLink]="['../edit']" color="accent">Create form</a>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-  <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+  <!-- Admin Actions Column -->
+  <ng-container matColumnDef="admin_actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element">
+      <a routerLink="../submitted/{{element._id}}" mat-raised-button>data</a>
+      <a mat-raised-button routerLink="../edit/{{element._id}}">edit</a>
+      <button mat-raised-button (click)="onDelete(element._id)" color="warn">delete</button>
+    </td>
+  </ng-container>
+
+  <!-- User Actions Column -->
+  <ng-container matColumnDef="user_actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element">
+      <a routerLink="../submit/{{element._id}}" color="primary" mat-raised-button>send</a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
