@@ -1,36 +1,36 @@
-<h1>Form to submit {{ form.name }}</h1>
-<div *ngIf="form.fields">
-    <div *ngFor="let field of form.fields">
+<h1>Form to submit {{ myForm.name }}</h1>
+<form (submit)="onSubmit(form)" #form="ngForm" *ngIf="myForm.fields">
+    <div *ngFor="let field of myForm.fields">
         <div [ngSwitch]="field.field_type">
             <div *ngSwitchCase="'text'">
                 <mat-form-field appearance="fill">
                     <mat-label>{{ field.field_name }}</mat-label>
-                    <input matInput type="text" value="" #attName (keyup)="field.value=attName.value">
+                    <input matInput type="text" value="" #attName (keyup)="field.field_value=attName.value">
                 </mat-form-field>
             </div>
         
             <div *ngSwitchCase="'number'">
                 <mat-form-field appearance="fill">
                     <mat-label>{{ field.field_name }}</mat-label>
-                    <input matInput type="number" [value]="field.field_value" #attName (keyup)="field.value=attName.value">
+                    <input matInput type="number" [value]="field.field_value" #attName (keyup)="field.field_value=attName.value">
                 </mat-form-field>
             </div>
         
             <div *ngSwitchCase="'date'">
                 <mat-form-field appearance="fill">
                     <mat-label>{{ field.field_name }}</mat-label>
-                    <input matInput [matDatepicker]="picker" #attName (keyup)="field.value=attName.value">
+                    <input matInput [matDatepicker]="picker" #attName (keyup)="field.field_value=attName.value">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
             </div>
         
             <div *ngSwitchCase="'button'">
-                <button mat-raised-button>{{ field.field_name }}</button>
+                <button mat-raised-button type="button">{{ field.field_name }}</button>
             </div>
         
         </div>
     </div>
     
-    <button mat-raised-button color="primary" (click)="submit()">Submit</button>
-</div>
+    <button mat-raised-button color="primary" type="submit" >Submit</button>
+</form>

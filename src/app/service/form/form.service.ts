@@ -16,6 +16,14 @@ export class FormService {
     private httpClient : HttpClient,
   ) { }
 
+  public submitForm(id: string, form: any): Observable<any>{
+    return this.httpClient.post(`${API}/submit/${id}`, form);
+  }
+
+  public editForm(id: string, form: any): Observable<any>{
+    return this.httpClient.put(`${API}/${id}`, form);
+  }
+
   public createForm(form: MyForm): Observable<any>{
     return this.httpClient.post(`${API}/`, form);
   }

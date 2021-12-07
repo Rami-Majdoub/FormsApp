@@ -22,21 +22,19 @@ export class FormSubmittedComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    if(!id){
+    if(!id) return;
 
-    } else {
-      this.ssGetFormSubmissions = this.formService.getFormSubmittions(id).subscribe(
-        ({data, columns}) =>{
-          this.data = data;
-          this.columnsToDisplay = columns;
-          this.displayedColumns = columns;
-        }
-      );
-    }
+    this.ssGetFormSubmissions = this.formService.getFormSubmittions(id).subscribe(
+      ({data, columns}) =>{
+        this.data = data;
+        this.columnsToDisplay = columns;
+        this.displayedColumns = columns;
+      }
+    );
   }
 
   ngOnDestroy(): void {
-    if(this.ssGetFormSubmissions) this.ssGetFormSubmissions = null;
+    if(this.ssGetFormSubmissions) this.ssGetFormSubmissions.unsubscribe();
   }
 
 }

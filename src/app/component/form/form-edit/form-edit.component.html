@@ -2,17 +2,17 @@
 <form (submit)="onSubmit(form)" #form="ngForm" class="column">
 	<mat-form-field appearance="fill">
 			<mat-label>Form name</mat-label>
-			<input matInput required>
+			<input matInput required [(ngModel)]="myForm.name" name="name">
 	</mat-form-field>
 	
-	<div *ngFor="let field of myForm.fields" class="row">
+	<div *ngFor="let field of myForm.fields; let i = index" class="row">
 		<mat-form-field appearance="fill">
 				<mat-label>Attribute name</mat-label>
 				<input matInput required [value]="field.field_name" #attName (keyup)="field.field_name=attName.value">
 		</mat-form-field>
 		
 		<mat-form-field appearance="fill">
-			<mat-label>Select</mat-label>
+			<mat-label>Attribute type</mat-label>
 			<mat-select [value]="field.field_type" (selectionChange)="field.field_type=$event.value">
 				<mat-option value="text">Text</mat-option>
 				<mat-option value="number">Number</mat-option>
@@ -21,9 +21,9 @@
 			</mat-select>
 		</mat-form-field>
 		
-		<button mat-raised-button color="warn">delete</button>
+		<button mat-raised-button type="button" color="warn" (click)="onRemoveField(i)">delete</button>
 	</div>
-  <button mat-raised-button color="accent" (click)="onAddField()">Add attribute</button>
+  <button mat-raised-button color="accent" type="button" (click)="onAddField()">Add attribute</button>
 
 	<button mat-raised-button color="primary" type="submit">Create</button>
 </form>

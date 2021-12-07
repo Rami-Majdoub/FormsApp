@@ -13,16 +13,14 @@ export class FormListComponent implements OnInit, OnDestroy  {
   ) { }
 
   private ssGetFormList: any;
+  private ssDelete: any;
 
-  columnsToDisplay: string[] = ["name", "admin_actions", "user_actions"];
   displayedColumns: string[] = ["name", "admin_actions", "user_actions"];
   dataSource: any;
 
   private refreshTable(){
     this.ssGetFormList = this.formService.getFormList().subscribe(
-      (data) =>{
-        this.dataSource = data;
-      }
+      (data) => this.dataSource = data
     );
   }
 
@@ -31,20 +29,18 @@ export class FormListComponent implements OnInit, OnDestroy  {
   }
 
   onDelete(id: string){
-    console.log(id);
-    this.formService.deleteForm(id).subscribe(
+    this.ssDelete = this.formService.deleteForm(id).subscribe(
       () => {
-        console.log("ok");
+        console.log(`form with id: ${id} deleted`);
         this.refreshTable();
       },
-      () => {
-        console.log("error");
-      }
+      (err) => console.log(err)
     )
   }
 
   ngOnDestroy(): void {
-    if(this.ssGetFormList) this.ssGetFormList = null;
+    if(this.ssGetFormList) this.ssGetFormList.unsubscribe();
+    if(this.ssDelete) this.ssDelete.unsubscribe();
   }
 
 }

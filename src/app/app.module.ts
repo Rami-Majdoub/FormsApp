@@ -12,6 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,8 @@ import { FormEditComponent } from './component/form/form-edit/form-edit.componen
 import { FormToSubmitComponent } from './component/form/form-to-submit/form-to-submit.component';
 import { FormListComponent } from './component/form/form-list/form-list.component';
 import { FormSubmittedComponent } from './component/form/form-submitted/form-submitted.component';
+import { LoginComponent } from './auth/component/login/login.component';
+import { RegisterComponent } from './auth/component/register/register.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { FormSubmittedComponent } from './component/form/form-submitted/form-sub
     FormEditComponent,
     FormToSubmitComponent,
     FormListComponent,
-    FormSubmittedComponent
+    FormSubmittedComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,7 @@ import { FormSubmittedComponent } from './component/form/form-submitted/form-sub
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
-    
+    MatSnackBarModule,
   ],
   providers: [
     MatDatepickerModule,
